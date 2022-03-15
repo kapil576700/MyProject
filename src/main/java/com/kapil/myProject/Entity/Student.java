@@ -33,4 +33,14 @@ public class Student {
 		return "Student [name=" + name + ", id=" + id + ", grade=" + grade + "]";
 	}
 	
+	public Student() {
+		
+	}
+	
+	public Student(int id, String name, String grade) {
+		this.id=id;
+		this.name=name;
+		this.grade=grade;
+	}
+	
 }

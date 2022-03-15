@@ -13,37 +13,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kapil.myProject.Entity.Student;
-import com.kapil.myProject.Repository.StudentRepo;
+import com.kapil.myProject.Repository.StudentService;
 
 @RestController
 public class MyController {
 
 	@Autowired
-	StudentRepo repo;
+	StudentService service;
 	
 	@RequestMapping("/getStudents")
 	@ResponseBody
 	public List<Student> getStudents() {
-		return repo.findAll();
+		return service.findStudents();
 	}
 	
 	@PostMapping("/addStudents")
 	public Student addStudents(@RequestBody Student student) {
-		repo.save(student);
-		return student;
+		return service.saveStudent(student);
+		
 	}
 	
 	@DeleteMapping("/students/{id}")
 	public String deleteStudent(@PathVariable("id") int id ) {
-		Student s = repo.getById(id);
-		repo.delete(s);
-		return "deleted";
+		return service.deleteStudent(id);
 	}
 	
 	@PutMapping("/updateStudent")
 	public Student updateStudent(@RequestBody Student student) {
-		repo.save(student);
-		return student;
+		return service.updateStudent(student);
+	
 	}
 
 }
